@@ -51,11 +51,13 @@ jobs:
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
     - name: Install rapidjson
+      if: matrix.language == 'cpp'
       uses: actions/checkout@master
       with:
         repository: Tencent/rapidjson
         path: rapidjson
     - name: Build dependencies
+      if: matrix.language == 'cpp'
       run: |
         cd rapidjson
         mkdir build
@@ -65,7 +67,6 @@ jobs:
         sudo make install
         cd ..
         cd ..
-      if: matrix.language == 'cpp'
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
